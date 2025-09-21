@@ -2,15 +2,8 @@
 import { onMounted, ref } from 'vue'
 import SensorCard from '@/components/SensorCard.vue'
 import { getSensorData } from "@/services/axios";
-import type {SensorsData} from "@/types";
-
-const sensors = ref({
-  temperature: 24.5,
-  humidity: 55,
-  sound: 42,
-  presence: false,
-  light: 320,
-});
+import type {SensorsData} from "@/types.ts";
+import axios from 'axios';
 
 const sensorsData = ref<SensorsData | null>(null);
 
@@ -18,8 +11,17 @@ const fetchSensorData = async () => {
   try{
     sensorsData.value = await getSensorData();
     console.log("sensorsData", sensorsData.value);
-  } catch (error) {
-    console.error('Error fetching sensor data:', error.message);
+  } catch (error: unknown) {
+    if(axios.isAxiosError(error)){
+      // Axios-specific error
+      console.error('Axios error:', error.response?.data || error.message);
+    } else if (error instanceof Error) {
+      // Regular JS error
+      console.error('Error fetching sensor data:', error.message);
+    } else {
+      // Completely unknown case
+      console.error('Unexpected error:', error);
+    }
   }
 }
 
