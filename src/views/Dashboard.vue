@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, onMounted, ref} from 'vue'
+import { onMounted, ref } from 'vue'
 import SensorCard from '@/components/SensorCard.vue'
 import { getSensorData } from "@/services/axios";
 import type {SensorsData} from "@/types";
