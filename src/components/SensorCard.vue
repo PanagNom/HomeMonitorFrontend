@@ -39,7 +39,3 @@ const colorClass = computed(() => `bg-gradient-to-r ${props.color}`);
     </p>
   </div>
 </template>
-
-<style scoped>
-
-</style>
