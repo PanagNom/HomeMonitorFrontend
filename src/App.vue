@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Dashboard from "@/views/Dashboard.vue";
+import Login from "@/views/Login.vue";
 </script>
 
 <template>
-  <Dashboard></Dashboard>
+  <Login></Login>
 </template>
 
 <style scoped>
